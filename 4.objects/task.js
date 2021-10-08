@@ -12,10 +12,6 @@ Student.prototype.setSubject = function (subjectName) {
   this.subject = subjectName;
 }
 
-Student.prototype.a = function () {
-  console.log(this.name, this.age);
-}
-
 Student.prototype.addMark = function (mark) {
   if(this.marks === undefined) { 
     this.marks = [];
