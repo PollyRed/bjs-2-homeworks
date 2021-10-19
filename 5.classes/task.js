@@ -8,10 +8,7 @@ class PrintEditionItem {
   }
 
   fix() {
-    this._state *= 1.5;
-    if (this._state > 100) {
-      this._state = 100;
-    }
+    this.state *= 1.5;
   }
 
   set state(newState) {
@@ -93,7 +90,9 @@ class Library {
     if (result === undefined) {
       return null;
     }
-    this.books = this.books.filter((book) => book != result);
+    let resultIndex = this.books.indexOf(result);
+    this.books.splice(resultIndex, 1);
+    
     return result;
   }
 }
@@ -112,10 +111,8 @@ class Student {
     } else {
       if (this.marks[subject] === undefined) {
         this.marks[subject] = [];
-        this.marks[subject].push(mark);
-      } else {
-        this.marks[subject].push(mark);
-      }
+      } 
+      this.marks[subject].push(mark);     
     }
   }
 
