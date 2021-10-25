@@ -65,4 +65,30 @@ describe('Домашнее задание к лекции 7 «Асинхронн
     expect(() => clock.addClock("16:45", f => f)).toThrow();
   });
 
+  it('пример использования класса AlarmClock', () => {
+    let time = clock.getCurrentFormattedTime();
+    clock.addClock(time, () => setInterval(console.log('Пора вставать')), 1);
+
+    expect(clock.alarmCollection.length).toEqual(1);
+
+    clock.addClock(time.slice(0, 4) + (Number(time[4]) + 1), () => {
+      console.log('Пора вставать');
+      clock.removeClock(2);
+    }, 2);
+
+    expect(clock.alarmCollection.length).toEqual(2);
+
+    clock.addClock(time.slice(0, 4) + (Number(time[4]) + 2), () => {
+      console.log('Пора вставать');
+      clock.clearAlarms();
+      clock.printAlarms();
+    }, 3);
+
+    expect(clock.alarmCollection.length).toEqual(3);
+
+    clock.printAlarms();
+
+    clock.start();
+  });
+
 });
